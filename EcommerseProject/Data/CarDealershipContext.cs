@@ -14,6 +14,10 @@ namespace EcommerseProject.Data
 
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
         public CarDealershipContext(DbContextOptions<CarDealershipContext> options)
             : base(options)
         {

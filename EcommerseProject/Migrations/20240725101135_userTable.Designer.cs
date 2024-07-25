@@ -4,6 +4,7 @@ using EcommerseProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerseProject.Migrations
 {
     [DbContext(typeof(CarDealershipContext))]
-    partial class CarDealershipContextModelSnapshot : ModelSnapshot
+    [Migration("20240725101135_userTable")]
+    partial class userTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,30 +152,6 @@ namespace EcommerseProject.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("EcommerseProject.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ShoppingCartItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShoppingCartItemId");
-
-                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("EcommerseProject.Models.ShoppingCartItem", b =>
@@ -334,17 +313,6 @@ namespace EcommerseProject.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("EcommerseProject.Models.Order", b =>
-                {
-                    b.HasOne("EcommerseProject.Models.ShoppingCartItem", "ShoppingCartItem")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ShoppingCartItem");
                 });
 
             modelBuilder.Entity("EcommerseProject.Models.ShoppingCartItem", b =>

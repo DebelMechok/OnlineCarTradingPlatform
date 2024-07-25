@@ -1,0 +1,45 @@
+﻿@page
+@model EcommerseProject.Pages.DashboardModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 style="text-align:center">Dashboard</h1>
+<br />
+<body class="background-section">
+    <table class="center-table">
+        <thead> 
+            <tr>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.ApplicationUsers)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelUser => user.Email)</td>
+                    <td>@Html.DisplayFor(modelUser => user.UserName)</td>
+                    <td>
+                        @if (user.UserRole == "Admin")
+                        {
+                            <p class="role-admin">Admin</p>
+                        }
+                        else if (user.UserRole == "PublicUser")
+                        {
+                            <p class="role-publicuser">Public User</p>
+                        }
+                    </td>
+                    <td>
+                        <span class="details-btn"><a class="btn" asp-page="./!EditUser" asp-route-id="@user.Id">Edit</a></span>
+                        <span class="details-btn"><a class="btn" asp-page="./DetailsUser" asp-route-id="@user.Id">Details</a></span>
+                        <span class="details-btn"><a class="btn" asp-page="./Delete" asp-route-id="@user.Id">Delete</a></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

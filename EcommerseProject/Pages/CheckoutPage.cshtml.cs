@@ -15,7 +15,9 @@ namespace EcommerseProject.Pages
 
         public IActionResult OnPost()
         {
+            _cartService.ClearCart();
             return RedirectToPage();
+            
         }
     }
 }

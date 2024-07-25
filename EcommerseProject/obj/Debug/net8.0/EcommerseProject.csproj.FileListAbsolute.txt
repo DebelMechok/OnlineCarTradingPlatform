@@ -285,3 +285,4 @@ C:\Users\i.mishevski\source\repos\EcommerseProject\EcommerseProject\bin\Debug\ne
 C:\Users\i.mishevski\source\repos\EcommerseProject\EcommerseProject\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\i.mishevski\source\repos\EcommerseProject\EcommerseProject\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\i.mishevski\source\repos\EcommerseProject\EcommerseProject\bin\Debug\net8.0\libman.json
+C:\Users\i.mishevski\source\repos\EcommerseProject\EcommerseProject\obj\Debug\net8.0\EcommerseProject.sourcelink.json

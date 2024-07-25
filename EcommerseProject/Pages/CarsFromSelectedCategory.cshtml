@@ -29,6 +29,14 @@
                 {
                     <a class="btn" asp-page="./EditCar" asp-route-id="@item.Id">Edit</a>
                 }
+                @if(User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                {
+                    <form class="add-to-cart-form" method="post" asp-page-handler="AddToCart">
+                        <input type="hidden" name="CarId" value="@item.Id" />
+                        <input inputmode="numeric" type="number" value="1" name="Quantity" min="1" />
+                        <button type="submit" class="btn">Add to cart</button>
+                    </form>
+                }
                 <a class="btn" asp-page="./DetailsPage" asp-route-id="@item.Id">Details</a>
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {

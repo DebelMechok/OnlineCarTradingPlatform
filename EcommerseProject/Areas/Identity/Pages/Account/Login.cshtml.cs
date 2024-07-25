@@ -69,6 +69,9 @@ namespace EcommerseProject.Areas.Identity.Pages.Account
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
+            
+
+
             ReturnUrl = returnUrl;
         }
 
