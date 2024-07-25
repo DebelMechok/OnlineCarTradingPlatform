@@ -1,0 +1,28 @@
+﻿@page
+@model EcommerseProject.Pages.DetailsPageModel
+
+@{
+    ViewData["Title"] = "DetailsPage";
+}
+
+<h1 class="details-p"><strong>Details</strong></h1>
+<body class="background-section">
+    <div class="details-container">
+        <img src="@Model.Car.CarPhoto" alt="Car Photo" />
+        <p> <strong>Model: @Html.DisplayFor(modelItem => modelItem.Car.Model)</strong></p>
+        <p><strong>Engine: @Html.DisplayFor(modelItem => modelItem.Car.Engine)</strong></p>
+        <p> <strong>Price: @Html.DisplayFor(modelItem => modelItem.Car.Price) $</strong></p>
+        @if (Model.Car.HasAirConditioning)
+        {
+            <p><strong>Air-conditioning:Yes</strong></p>
+        }
+        else
+        {
+            <p><strong>Does it have air-conditioning:No</strong></p>
+        }
+        <p> <strong>Year: @Html.DisplayFor(modelItem => modelItem.Car.Year)</strong></p>
+        
+
+        <a asp-page="Index" class="btn">Back</a>
+  </div>
+</body>

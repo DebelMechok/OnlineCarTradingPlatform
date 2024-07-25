@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EcommerseProject.Identity
+@using EcommerseProject.Services
+@using System.Linq
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject ICartService CartService
+
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (!User.IsInRole("Admin"))
+        {
+            
+            <li class="cart-container">
+                <a style="top:-5px;text-decoration: none;" class="cart" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-shopping-cart"></i> @CartService.GetCartItemCount()
+                </a>
+                <div class="cart-section">
+                    @if (CartService.GetCart().Any())
+                    {
+                        <ul>
+                            @foreach (var item in CartService.GetCart())
+                            {
+                                <li>
+                                    <p>@item.Car.Model</p>
+                                    <p> @item.Quantity</p>
+                                    <p>@item.Price $</p>
+                                    <form style="margin-right:0" method="post" asp-page-handler="RemoveFromCart">
+                                        <input type="hidden" name="CarId" value="@item.CarId" />
+                                        <button type="submit" class="btn btn-link">Remove</button>
+                                    </form>
+                                </li>
+                            }
+                        </ul>
+                        <p>Total: @CartService.GetTotalPrice() $</p>
+                        <a style="box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);" class="btn" asp-page="CheckoutPage">
+                            Checkout
+                        </a>
+                    }
+                    else
+                    {
+                        <p>Your cart is empty.</p>
+                    }
+                </div>
+            </li>
+            
+        }
+        <li class="nav-item">
+            <a style="font-size:25px" id="manage" class="hello-user" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <i class="fas fa-user-circle"></i> Hello @UserManager.GetUserName(User)!
+            </a>
+        </li>
+        <li class="nav-item">
+            <form id="logout-form" asp-area="Identity" asp-page="/Account/Logout" method="post" class="form-inline">
+                <button style="min-width:150px" id="logout" type="submit" class="btn btn-link nav-link text-dark">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="btn btn-link nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">
+                <i class="fas fa-user-plus"></i> Register
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-link nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        </li>
+    }
+</ul>

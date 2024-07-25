@@ -1,0 +1,45 @@
+﻿@page
+@model CheckoutModel
+@using EcommerseProject.Services
+@inject ICartService CartService
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+
+<body class="form-background-section">
+    <div class="center-form-container">
+        <form class="checkout-center-form" id="checkout" method="post">
+            <h1 style="text-align:center">Checkout</h1>
+            <hr />
+            @if (CartService.GetCart().Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in CartService.GetCart())
+                        {
+                            <tr>
+                                <td>@item.Car.Model</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price $</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>Total: <strong>@CartService.GetTotalPrice() $</strong></p>
+                <a asp-page="/index" type="submit" class="w-100 btn btn-lg btn-primary">Pay</a>
+            }
+            else
+            {
+                <p>Your cart is empty.</p>
+            }
+        </form>
+    </div>
+</body>

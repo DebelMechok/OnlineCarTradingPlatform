@@ -1,0 +1,40 @@
+﻿@page
+@model CarsFromSelectedCategoryModel
+
+@{
+    ViewData["Title"] = "CarsFromSelectedCategory";
+}
+<body class="background-section">
+
+<p>
+    <a style="block-size:50px;font-size:25px" class="btn buttons" asp-page="Index"><i class="fas fa-arrow-left"></i> Back</a>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+            <a style="block-size:50px;font-size:25px" class="btn" asp-page="/CreateCar">Create New</a>
+            <a style="block-size:50px;font-size:25px;width:fit-content" class="btn" asp-route-id="@Model.Id"asp-page="/DeleteCategory">Delete Current Category</a>
+    }
+</p>
+    <div class="cars-p">
+        <p style="text-align:center">Available Cars from @Model.Category</p>
+</div>
+    
+<div class="selected-car-container">
+    @foreach (var item in Model.Cars)
+    {
+        <div class="selected-car-item">
+            <p><img src="@item.CarPhoto" alt="Car Photo" /></p>
+                <p> <strong>Model: @Html.DisplayFor(modelItem => item.Model)</strong></p>
+                <p><strong>Price: @Html.DisplayFor(modelItem => item.Price) $</strong></p>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a class="btn" asp-page="./EditCar" asp-route-id="@item.Id">Edit</a>
+                }
+                <a class="btn" asp-page="./DetailsPage" asp-route-id="@item.Id">Details</a>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                   <a class="btn" asp-page="./DeleteCar" asp-route-id="@item.Id">Delete</a>
+                }
+        </div>
+    }
+</div>
+</body>

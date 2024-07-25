@@ -1,0 +1,60 @@
+﻿@page
+@model EcommerseProject.Pages.EditCarModel
+
+@{
+    ViewData["Title"] = "EditCar";
+}
+<a style="block-size:50px;font-size:25px" class="btn buttons"  asp-page="Index"><i class="fas fa-arrow-left"></i> Back</a>
+<body style="overflow:hidden;height: 100%;margin: 0;padding: 0; " form-background-section"">
+    <div class="center-form-container">
+    
+        <form class="edit-center-form" method="post">
+            <h1 style="text-align:center">EditCar</h1>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Car.Id" />
+            <div class="form-group">
+                <label asp-for="Car.Model" class="control-label"></label>
+                <input asp-for="Car.Model" class="form-control" />
+                <span asp-validation-for="Car.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Engine" class="control-label"></label>
+                <input asp-for="Car.Engine" class="form-control" />
+                <span asp-validation-for="Car.Engine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Price" class="control-label"></label>
+                <input asp-for="Car.Price" class="form-control" />
+                <span asp-validation-for="Car.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Car.HasAirConditioning" /> @Html.DisplayNameFor(model => model.Car.HasAirConditioning)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Year" class="control-label"></label>
+                <input asp-for="Car.Year" class="form-control" />
+                <span asp-validation-for="Car.Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.CarPhoto" class="control-label"></label>
+                <input asp-for="Car.CarPhoto" class="form-control" />
+                <span asp-validation-for="Car.CarPhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label">Category</label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input  type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+   
+</div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,61 @@
+﻿@page
+@model CreateCarModel
+@{
+    ViewData["Title"] = "CreateCar";
+}
+<body class="form-background-section">
+
+    <div class="center-form-container">
+        <form class="createCar-form" method="post">
+        <h1 style="text-align:center">Create Car</h1>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Car.Model" class="control-label"><i class="fas fa-car"></i> Model</label>
+                <input asp-for="Car.Model" class="form-control" />
+                <span asp-validation-for="Car.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Engine" class="control-label"><i class="fas fa-cogs"></i> Engine</label>
+                <input asp-for="Car.Engine" class="form-control" />
+                <span asp-validation-for="Car.Engine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Price" class="control-label"><i class="fas fa-dollar-sign"></i> Price</label>
+                <input asp-for="Car.Price" class="form-control" />
+                <span asp-validation-for="Car.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" asp-for="Car.HasAirConditioning" />
+                <label class="form-check-label"><i class="fas fa-snowflake"></i> @Html.DisplayNameFor(model => model.Car.HasAirConditioning)</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Year" class="control-label"><i class="fas fa-calendar-alt"></i> Year</label>
+                <input asp-for="Car.Year" class="form-control" />
+                <span asp-validation-for="Car.Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.CarPhoto" class="control-label"><i class="fas fa-image"></i> Car Photo</label>
+                <input asp-for="Car.CarPhoto" class="form-control" />
+                <span asp-validation-for="Car.CarPhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label">Category</label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <a  class="btn buttons" asp-page="Index"><i class="fas fa-arrow-left"></i> Back</a>
+                <button type="submit" class="btn buttons btn-primary"><i class="fas fa-check"></i> Create</button>
+            </div>
+        
+        </form> 
+    </div>
+</body>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
