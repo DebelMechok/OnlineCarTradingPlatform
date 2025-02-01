@@ -19,5 +19,6 @@ namespace EcommerseProject.Models
         public string CarPhoto { get; set; }
 
         public int CategoryId { get; set; }
+        //11111
     }
 }
